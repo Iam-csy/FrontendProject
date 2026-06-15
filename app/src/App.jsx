@@ -5,13 +5,24 @@ import HeroSection from './component/HeroSection'
 import Section2 from './component/Section2'
 import Section3 from './component/Section3'
 import Navbar from './component/Navbar'
-import { useRef } from 'react'
+import { useRef,useEffect } from 'react'
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 
 const App = () => {
   const fantaRef = useRef(null);
   const twoRef = useRef(null);
   const threeRef = useRef(null);
+
+useEffect(() => {
+  // const tl = gsap.timeline();
+
+
+}, []);
+
      
 
 
