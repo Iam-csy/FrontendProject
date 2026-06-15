@@ -1,5 +1,4 @@
 import cocacola from "../assets/cocacola.png";
-
 import pepsi from "../assets/pepsi.png";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -7,30 +6,38 @@ import { useEffect } from "react";
 gsap.registerPlugin(ScrollTrigger);
 
 
-const Section3 = ( threeRef) => {
-   useEffect(()=>{
-   
-    const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: threeRef.current,
-      start: "top 70%",
-    },
-  });
+const Section3 = ({ threeRef }) => {
+   useEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: threeRef.current,
+          start: "top 70%",
+          end: "bottom 50%",
+          toggleActions: "play none none none",
+          markers: true,
+        },
+      });
 
-  tl.from(".left-can", {
-    rotation: -30, // \ shape
-    x: -200,
-    opacity: 0,
-    duration: 1,
-  })
-   .from(".right-can", {
-    rotation: 30, // / shape
-    x: 200,
-    opacity: 0,
-    duration: 1,
-  }, "<");
+      tl.from(".left-can", {
+        rotation: -30,
+        x: -200,
+        opacity: 0,
+        duration: 1,
+      }).from(
+        ".right-can",
+        {
+          rotation: 30,
+          x: 200,
+          opacity: 0,
+          duration: 1,
+        },
+        "<"
+      );
+    }, threeRef);
 
-   },[])
+    return () => ctx.revert();
+  }, [threeRef]);
 
 
   return (
@@ -48,7 +55,6 @@ const Section3 = ( threeRef) => {
 
       {/* Card 2 */}
       <div className="w-80 h-130 bg-white rounded-2xl shadow-xl p-6 flex flex-col items-center justify-between">
-      
         <h1 className="text-3xl font-bold">Fanta</h1>
         <button className="px-6 py-3 bg-black text-white rounded-full">
           Buy Now

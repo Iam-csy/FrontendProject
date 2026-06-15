@@ -18,10 +18,26 @@ const App = () => {
   const threeRef = useRef(null);
 
 useEffect(() => {
-  // const tl = gsap.timeline();
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: twoRef.current,
+      start: "top center",
+      end: "center center",
+      scrub: true,
+      markers: true,
+    },
+  });
 
+  tl.to(fantaRef.current, {
+    translateX: -205,
+    translateY: 800,
+    duration: 1,
+    ease:"power1.inOut",
+  });
 
 }, []);
+
+
 
      
 
@@ -31,13 +47,13 @@ useEffect(() => {
       <div className=' '>
          <Navbar />
       </div>
-      <div  className=' '>
+      <div  className=''>
           <HeroSection fantaRef={fantaRef} />
       </div>
-      <div >
+      <div className=''>
           <Section2 twoRef={twoRef} />
       </div>
-      <div>
+      <div >
         
         <Section3 threeRef={threeRef} />
 
